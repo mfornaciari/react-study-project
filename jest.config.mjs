@@ -7,4 +7,7 @@ export default {
   transform: {
     '^.+\\.jsx$': 'babel-jest',
   },
+  moduleNameMapper: {
+    "\\.css$": "identity-obj-proxy"
+  }
 };
