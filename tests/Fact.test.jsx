@@ -1,12 +1,38 @@
-import { render, fireEvent, screen } from '@testing-library/react';
-import { describe, it } from '@testing-library/jest-dom';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Fact from '../src/Fact';
 
 describe('Fact', () => {
-  const item = { id: 0, text: 'Was first released in 2013', read: false };
-  const { container } = render(<Fact content={item} />);
+  it('has the correct text and styles', () => {
+    const item = { text: 'Was first released in 2013' };
 
-  it('should render correctly', () => {
-    expect(container.textContent).toEqual(item.text)
+    const { getByRole } = render(<Fact content={item} />);
+    const span = getByRole('listitem').lastChild;
+    const checkbox = getByRole('checkbox');
+
+    expect(span).toHaveTextContent('Was first released in 2013');
+    expect(checkbox).toHaveClass('checkbox');
+  });
+
+  it('has checked box and line through text when read', () => {
+    const item = { read: true };
+
+    const { getByRole } = render(<Fact content={item} />);
+    const checkbox = getByRole('checkbox');
+    const span = getByRole('listitem').lastChild;
+
+    expect(span).toHaveClass('read');
+    expect(checkbox).toBeChecked();
+  });
+
+  it('has unchecked box and regular text when not read', () => {
+    const item = { read: false };
+
+    const { getByRole } = render(<Fact content={item} />);
+    const checkbox = getByRole('checkbox');
+    const span = getByRole('listitem').lastChild;
+
+    expect(span).not.toHaveClass('read');
+    expect(checkbox).not.toBeChecked();
   });
 });
