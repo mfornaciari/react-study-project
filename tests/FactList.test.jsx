@@ -27,11 +27,11 @@ describe('FactList', () => {
     const facts = screen.getAllByRole('listitem');
     const factCheckboxes = screen.getAllByRole('checkbox');
 
-    factCheckboxes.forEach(checkbox => fireEvent.click(checkbox));
+    for (const checkbox of factCheckboxes) { fireEvent.click(checkbox) }
     fireEvent.click(hideReadButton);
 
     expect(hideReadButton.textContent).toBe('Show read facts');
-    facts.forEach(fact => expect(fact).not.toBeInTheDocument());
+    for (const fact of facts) { expect(fact).not.toBeInTheDocument() }
   });
 
   it('show all read facts when button is clicked while they are hidden', () => {
@@ -39,16 +39,12 @@ describe('FactList', () => {
     const hideReadButton = screen.getByRole('button');
     const factCheckboxes = screen.getAllByRole('checkbox');
 
-    factCheckboxes.forEach(checkbox => fireEvent.click(checkbox));
+    for (const checkbox of factCheckboxes) { fireEvent.click(checkbox) }
     fireEvent.click(hideReadButton); // Hides read facts
     fireEvent.click(hideReadButton); // Shows read facts
 
     expect(hideReadButton.textContent).toBe('Hide read facts');
-    screen.getAllByRole('listitem').forEach(fact => {
-      expect(fact).toBeInTheDocument();
-    });
-    screen.getAllByRole('checkbox').forEach(checkbox => {
-      expect(checkbox).toBeChecked();
-    });
+    for (const fact of screen.getAllByRole('listitem')) { expect(fact).toBeInTheDocument() }
+    for (const checkbox of screen.getAllByRole('checkbox')) { expect(checkbox).toBeChecked() }
   });
 });
