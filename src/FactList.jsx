@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import '../style/style.css';
 import Fact from './Fact';
 
-function FactList () {
+function FactList() {
   const [facts, setFacts] = useState(
     [
       { id: 0, text: 'Was first released in 2013', read: false },
@@ -18,7 +18,7 @@ function FactList () {
   const handleFactChange = (itemId) => {
     const newFacts = facts.map(oldItem => {
       if (oldItem.id === itemId) {
-        return {...oldItem, read: !oldItem.read};
+        return { ...oldItem, read: !oldItem.read };
       } else {
         return oldItem;
       }
@@ -28,7 +28,7 @@ function FactList () {
 
   return (
     <>
-      <button id='hideReadButton' onClick={() => setHideRead(!hideRead)}>
+      <button onClick={() => setHideRead(!hideRead)}>
         {hideRead ? 'Show read facts' : 'Hide read facts'}
       </button>
 

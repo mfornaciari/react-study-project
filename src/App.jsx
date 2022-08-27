@@ -2,7 +2,7 @@ import logo from '../assets/react-logo.png';
 import '../style/style.css';
 import FactList from './FactList';
 
-function App () {
+function App() {
   return (
     <div id='app'>
       <img src={logo} id='logo' />

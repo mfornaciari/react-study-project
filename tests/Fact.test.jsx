@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import Fact from '../src/Fact';
 
 describe('Fact', () => {
-  it('has the correct text and styles', () => {
+  it('has the correct text and classes', () => {
     const item = { text: 'Was first released in 2013' };
 
     const { getByRole } = render(<Fact content={item} />);
