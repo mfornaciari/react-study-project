@@ -2,17 +2,14 @@ import '../style/style.css';
 
 function Fact({ content, onChange }) {
   return (
-    <li>
+    <li className={content.read ? 'read' : null}>
       <input
         type='checkbox'
-        id='factCheckbox'
         onChange={() => onChange()}
         checked={content.read ? true : false}
         className='checkbox'
       />
-      <span className={content.read ? 'read' : null}>
-        {content.text}
-      </span>
+      {content.text}
     </li>
   );
 }

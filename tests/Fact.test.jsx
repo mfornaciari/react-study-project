@@ -7,10 +7,10 @@ describe('Fact', () => {
     const item = { text: 'Was first released in 2013' };
 
     const { getByRole } = render(<Fact content={item} />);
-    const span = getByRole('listitem').lastChild;
+    const fact = getByRole('listitem');
     const checkbox = getByRole('checkbox');
 
-    expect(span).toHaveTextContent('Was first released in 2013');
+    expect(fact.textContent).toBe('Was first released in 2013');
     expect(checkbox).toHaveClass('checkbox');
   });
 
@@ -18,10 +18,10 @@ describe('Fact', () => {
     const item = { read: true };
 
     const { getByRole } = render(<Fact content={item} />);
+    const fact = getByRole('listitem');
     const checkbox = getByRole('checkbox');
-    const span = getByRole('listitem').lastChild;
 
-    expect(span).toHaveClass('read');
+    expect(fact).toHaveClass('read');
     expect(checkbox).toBeChecked();
   });
 
@@ -29,10 +29,10 @@ describe('Fact', () => {
     const item = { read: false };
 
     const { getByRole } = render(<Fact content={item} />);
+    const fact = getByRole('listitem');
     const checkbox = getByRole('checkbox');
-    const span = getByRole('listitem').lastChild;
 
-    expect(span).not.toHaveClass('read');
+    expect(fact).not.toHaveClass('read');
     expect(checkbox).not.toBeChecked();
   });
 });

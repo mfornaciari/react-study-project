@@ -15,11 +15,10 @@ describe('FactList', () => {
     render(<FactList />);
     const fact = screen.getByRole('list').firstChild;
     const checkbox = fact.firstChild;
-    const span = fact.lastChild;
 
     fireEvent.click(checkbox);
 
-    expect(span).toHaveClass('read');
+    expect(fact).toHaveClass('read');
   });
 
   it('hides all read facts when button is clicked while they are shown', () => {
@@ -47,6 +46,9 @@ describe('FactList', () => {
     expect(hideReadButton.textContent).toBe('Hide read facts');
     screen.getAllByRole('listitem').forEach(fact => {
       expect(fact).toBeInTheDocument();
+    });
+    screen.getAllByRole('checkbox').forEach(checkbox => {
+      expect(checkbox).toBeChecked();
     });
   });
 });
