@@ -15,11 +15,11 @@ function FactList() {
 
   const filteredFacts = hideRead ? facts.filter(fact => !fact.read) : facts;
 
-  const handleChange = (factId) => {
-    const newFacts = facts.map(oldFact => {
-      return oldFact.id === factId ? { ...oldFact, read: !oldFact.read } : oldFact;
+  const handleChange = (readFactId) => {
+    const updatedFacts = facts.map(fact => {
+      return fact.id === readFactId ? { ...fact, read: !fact.read } : fact;
     });
-    setFacts(newFacts);
+    setFacts(updatedFacts);
   }
 
   return (
