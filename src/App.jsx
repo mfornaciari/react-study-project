@@ -4,13 +4,13 @@ import FactList from './FactList';
 
 function App() {
   return (
-    <div id='app'>
+    <main id='app'>
       <img src={logo} id='logo' />
 
       <h1>Fun facts about React</h1>
 
       <FactList />
-    </div>
+    </main>
   );
 }
 
