@@ -26,7 +26,7 @@ describe('App', () => {
 
   it('renders correctly', async () => {
     const title = screen.getByRole('heading');
-    const hideReadButton = screen.getByRole('button');
+    const hideReadButton = await screen.findByRole('button');
     const facts = await screen.findAllByRole('listitem');
     const checkboxes = await screen.findAllByRole('checkbox');
 
@@ -41,6 +41,10 @@ describe('App', () => {
     }
   });
 
+  it('renders loading warning while data is being fetched', () => {
+    expect(screen.getByRole('main')).toHaveTextContent('Loading, please wait...');
+  });
+
   it('puts line through fact text when checkbox is clicked', async () => {
     const facts = await screen.findAllByRole('listitem');
     const checkboxes = await screen.findAllByRole('checkbox');
@@ -51,7 +55,7 @@ describe('App', () => {
   });
 
   it('hides all read facts and changes button text when button is clicked while read facts are shown', async () => {
-    const hideReadButton = screen.getByRole('button');
+    const hideReadButton = await screen.findByRole('button');
 
     for (const checkbox of await screen.findAllByRole('checkbox')) { fireEvent.click(checkbox) }
     fireEvent.click(hideReadButton);
@@ -62,7 +66,7 @@ describe('App', () => {
   });
 
   it('shows all read facts and resets button text when button is clicked while read facts are hidden', async () => {
-    const hideReadButton = screen.getByRole('button');
+    const hideReadButton = await screen.findByRole('button');
 
     for (const checkbox of await screen.findAllByRole('checkbox')) { fireEvent.click(checkbox) }
     fireEvent.click(hideReadButton); // Hides read facts

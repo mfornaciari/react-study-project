@@ -25,6 +25,7 @@ function FactList() {
     fetchData();
   }, []);
 
+  if (facts.length === 0) { return <p>Loading, please wait...</p> }
   return (
     <>
       <ul>
