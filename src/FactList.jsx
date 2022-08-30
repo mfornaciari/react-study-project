@@ -19,7 +19,7 @@ function FactList() {
     const fetchData = async () => {
       const response = await fetch('https://run.mocky.io/v3/20048106-9506-46bb-82ac-9465296402b2');
       const jsonResponse = await response.json();
-      const data = jsonResponse.facts.map(fact => ({...fact, read: false}));
+      const data = jsonResponse.facts.map(fact => ({ ...fact, read: false }));
       setFacts(data);
     }
     fetchData();
