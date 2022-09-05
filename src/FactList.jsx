@@ -28,7 +28,7 @@ function FactList() {
   if (facts.length === 0) { return <p>Loading, please wait...</p> }
   return (
     <>
-      <ul>
+      <ul id='fact-list'>
         {filteredFacts.map(fact =>
           <Fact key={fact.id} fact={fact} onChange={handleChange} />
         )}
