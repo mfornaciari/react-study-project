@@ -26,18 +26,18 @@ describe('App', () => {
     render(<App />);
     const title = screen.getByRole('heading');
 
-    waitForElementToBeRemoved(screen.getByText('Loading, please wait...'));
+    await waitForElementToBeRemoved(screen.getByText('Loading, please wait...'));
 
     expect(title.textContent).toBe('Fun facts about React');
-    const facts = await screen.findAllByRole('listitem');
-    const checkboxes = await screen.findAllByRole('checkbox');
+    const facts = screen.getAllByRole('listitem');
+    const checkboxes = screen.getAllByRole('checkbox');
     for (const [index, fact] of facts.entries()) {
       expect(fact).not.toHaveClass('read');
       expect(fact.textContent).toBe(factsText[index]);
       expect(fact).toContainElement(checkboxes[index]);
       expect(checkboxes[index]).toHaveClass('checkbox');
     }
-    const hideReadButton = await screen.findByRole('button');
+    const hideReadButton = screen.getByRole('button');
     expect(hideReadButton.textContent).toBe('Hide read facts');
   });
 
